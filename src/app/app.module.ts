@@ -7,16 +7,24 @@ import {MatInputModule} from '@angular/material/input';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
+import { GetUserMediaBasicComponent } from './AccessMediaDevices/get-user-media-basic/get-user-media-basic.component';
+import {MatButtonModule} from '@angular/material/button';
+import {MatCardModule} from '@angular/material/card';
+import {MatIconModule} from '@angular/material/icon';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatListModule} from '@angular/material/list';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent
+    HeaderComponent,
+    GetUserMediaBasicComponent
   ],
   imports: [
     BrowserModule,
     FormsModule, ReactiveFormsModule,
     BrowserAnimationsModule, MatFormFieldModule, MatInputModule,
+    MatButtonModule, MatCardModule, MatIconModule, MatToolbarModule, MatListModule,
     AppRoutingModule
   ],
   providers: [],

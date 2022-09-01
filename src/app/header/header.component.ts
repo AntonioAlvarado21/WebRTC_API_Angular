@@ -12,4 +12,8 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  abrir(){
+    window.location.replace("https://www.delftstack.com");
+  }
+
 }
