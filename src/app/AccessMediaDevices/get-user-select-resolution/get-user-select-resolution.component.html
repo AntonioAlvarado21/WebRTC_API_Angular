@@ -1,0 +1,64 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <base target="_blank">
+    <title>getUserMedia: select resolution</title>
+    <style>
+        body, html {
+            height: 100%;
+        }
+
+        button {
+            margin: 0 10px 20px 0;
+            min-width: 90px;
+        }
+
+        div#buttons {
+            margin: 0 0 1em 0;
+        }
+
+        div#container {
+            max-width: 100%;
+        }
+
+        #errormessage {
+            display: none;
+            font-size: 300%;
+        }
+
+        #videoblock {
+            display: none;
+        }
+
+        p#dimensions {
+            height: 1em;
+            margin: 0 0 1.5em 0;
+        }
+
+        video {
+            background: none;
+            height: auto;
+            width: auto;
+        }
+    </style>
+
+</head>
+
+<body>
+<div id="container">
+    <div id="buttons">
+        <button mat-raised-button color="primary" id="qvga" (click)="qvgaActivate()">QVGA</button>
+        <button mat-raised-button color="primary" id="vga" (click)="vgaActivate()">VGA</button> 
+        <button mat-raised-button color="primary" id="hd" (click)="hdActivate()">HD</button>
+        <!-- <button mat-raised-button color="primary" id="full-hd">Full HD</button>
+        <button mat-raised-button color="primary" id="televisionFourK">Television 4K (3840x2160)</button>
+        <button mat-raised-button color="primary" id="cinemaFourK">Cinema 4K (4096x2160)</button>
+        <button mat-raised-button color="primary" id="eightK">8K</button>  -->
+    </div>
+        <video id="video" playsinline autoplay></video>
+        <br>
+        <h2>Your actual resolution is: {{actualResolution}} </h2>
+    </div>
+
+</body>
+</html>

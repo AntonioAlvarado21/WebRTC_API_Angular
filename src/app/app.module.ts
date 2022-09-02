@@ -18,6 +18,7 @@ import {MatSelectModule} from '@angular/material/select';
 import { BasicPeerConnectionStabComponent } from './RTCPeerConnection/basic-peer-connection-stab/basic-peer-connection-stab.component';
 import { GetUserMediaCanvasComponent } from './AccessMediaDevices/get-user-media-canvas/get-user-media-canvas.component';
 import { GetUserCanvasFiltersComponent } from './AccessMediaDevices/get-user-canvas-filters/get-user-canvas-filters.component';
+import { GetUserSelectResolutionComponent } from './AccessMediaDevices/get-user-select-resolution/get-user-select-resolution.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { GetUserCanvasFiltersComponent } from './AccessMediaDevices/get-user-can
     GetUserMediaBasicComponent,
     BasicPeerConnectionStabComponent,
     GetUserMediaCanvasComponent,
-    GetUserCanvasFiltersComponent
+    GetUserCanvasFiltersComponent,
+    GetUserSelectResolutionComponent
   ],
   imports: [
     BrowserModule,
