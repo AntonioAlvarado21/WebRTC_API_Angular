@@ -30,7 +30,7 @@ export class GetUserCanvasFiltersComponent implements OnInit {
         console.error('Error accessing media devices.', error);
     });
     
-      this.aplicarFiltro();
+    this.aplicarFiltro();
   }
 
   //Reproduce el video de la cámara

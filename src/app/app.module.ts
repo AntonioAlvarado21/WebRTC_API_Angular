@@ -19,6 +19,7 @@ import { BasicPeerConnectionStabComponent } from './RTCPeerConnection/basic-peer
 import { GetUserMediaCanvasComponent } from './AccessMediaDevices/get-user-media-canvas/get-user-media-canvas.component';
 import { GetUserCanvasFiltersComponent } from './AccessMediaDevices/get-user-canvas-filters/get-user-canvas-filters.component';
 import { GetUserSelectResolutionComponent } from './AccessMediaDevices/get-user-select-resolution/get-user-select-resolution.component';
+import { GetOnlyAudioLocalComponent } from './AccessMediaDevices/get-only-audio-local/get-only-audio-local.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { GetUserSelectResolutionComponent } from './AccessMediaDevices/get-user-
     BasicPeerConnectionStabComponent,
     GetUserMediaCanvasComponent,
     GetUserCanvasFiltersComponent,
-    GetUserSelectResolutionComponent
+    GetUserSelectResolutionComponent,
+    GetOnlyAudioLocalComponent
   ],
   imports: [
     BrowserModule,
