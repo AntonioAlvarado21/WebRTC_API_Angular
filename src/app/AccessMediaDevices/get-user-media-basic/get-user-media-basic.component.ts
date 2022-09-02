@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
-declare var apiRTC: any;
+
 
 @Component({
   selector: 'app-get-user-media-basic',
@@ -8,102 +7,51 @@ declare var apiRTC: any;
   styleUrls: ['./get-user-media-basic.component.css']
 })
 export class GetUserMediaBasicComponent implements OnInit{
+
+  //Restricciones de la reproducción de video
+  constraints = {
+    'video': true,
+    'audio': false
+  }
+
+  constructor() { }
   
-  conversationFormGroup = this.fb.group({
-    name: this.fb.control('', [Validators.required])
-  });
-
-  constructor(private fb: FormBuilder) {
+  ngOnInit() {
+    
+  //this.buttonAction();
   }
 
-  get conversationNameFc(): FormControl {
-    return this.conversationFormGroup.get('name') as FormControl;
-  }
-
-  ngOnInit(): void {
-  }
-
-  getOrcreateConversation() {
-    var localStream: null = null;
-
-    //==============================
-    // 1/ CREATE USER AGENT
-    //==============================
-    var ua = new apiRTC.UserAgent({
-      uri: 'apzkey:myDemoApiKey'
-    });
-
-    //==============================
-    // 2/ REGISTER
-    //==============================
-    ua.register().then((session: { getConversation: (arg0: any) => any; }) => {
-
-      //==============================
-      // 3/ CREATE CONVERSATION
-      //==============================
-      const conversation = session.getConversation(this.conversationNameFc.value);
-
-      //==========================================================
-      // 4/ ADD EVENT LISTENER : WHEN NEW STREAM IS AVAILABLE IN CONVERSATION
-      //==========================================================
-      conversation.on('streamListChanged', (streamInfo: any) => {
-        console.log("streamListChanged :", streamInfo);
-        if (streamInfo.listEventType === 'added') {
-          if (streamInfo.isRemote === true) {
-            conversation.subscribeToMedia(streamInfo.streamId)
-              .then((stream: any) => {
-                console.log('subscribeToMedia success');
-              }).catch((err: any) => {
-                console.error('subscribeToMedia error', err);
-              });
-          }
-        }
-      });
-      //=====================================================
-      // 4 BIS/ ADD EVENT LISTENER : WHEN STREAM IS ADDED/REMOVED TO/FROM THE CONVERSATION
-      //=====================================================
-      conversation.on('streamAdded', (stream: any) => {
-        stream.addInDiv('remote-container', 'remote-media-' + stream.streamId, {}, false);
-      }).on('streamRemoved', (stream: any) => {
-        stream.removeFromDiv('remote-container', 'remote-media-' + stream.streamId);
-      });
-
-      //==============================
-      // 5/ CREATE LOCAL STREAM
-      //==============================
-      ua.createStream({
-        constraints: {
-          audio: true,
-          video: true
-        }
+  //Función principal que se ejecuta al pulsar el botón (Inicializa la creación del objeto de video)
+  buttonAction(){
+    navigator.mediaDevices.getUserMedia(this.constraints)
+      .then(stream => {
+          console.log('Got MediaStream:', stream);
       })
-        .then((stream: any) => {
-
-          console.log('createStream :', stream);
-
-          // Save local stream
-          localStream = stream;
-          stream.removeFromDiv('local-container', 'local-media');
-          stream.addInDiv('local-container', 'local-media', {}, true);
-
-          //==============================
-          // 6/ JOIN CONVERSATION
-          //==============================
-          conversation.join()
-            .then((response: any) => {
-              //==============================
-              // 7/ PUBLISH LOCAL STREAM
-              //==============================
-              conversation.publish(localStream);
-            }).catch((err: any) => {
-              console.error('Conversation join error', err);
-            });
-
-        }).catch((err: any) => {
-          console.error('create stream error', err);
-        });
-    });
+      .catch(error => {
+          console.error('Error accessing media devices.', error);
+      });
+    this.getConnectedDevices('videoinput', cameras => console.log('Cameras found', cameras));
+    this.playVideoFromCamera();
   }
 
+  //Muestra los dispositivos conectados disponibles
+  getConnectedDevices(type: string, callback: (arg0: MediaDeviceInfo[]) => void) {
+    navigator.mediaDevices.enumerateDevices()
+        .then(devices => {
+            const filtered = devices.filter(device => device.kind === type);
+            callback(filtered);
+        });
+  }
 
+  //Reproduce el video de la cámara
+  async playVideoFromCamera() {
+    try {
+        const stream = await navigator.mediaDevices.getUserMedia(this.constraints);
+        const videoElement = document.querySelector('#video') as HTMLVideoElement;
+        videoElement.srcObject = stream;
+    } catch(error) {
+        console.error('Error opening video camera.', error);
+    }
+}
+  
 }

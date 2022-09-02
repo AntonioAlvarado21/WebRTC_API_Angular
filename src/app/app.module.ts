@@ -13,12 +13,14 @@ import {MatCardModule} from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatListModule} from '@angular/material/list';
+import { BasicPeerConnectionStabComponent } from './RTCPeerConnection/basic-peer-connection-stab/basic-peer-connection-stab.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    GetUserMediaBasicComponent
+    GetUserMediaBasicComponent,
+    BasicPeerConnectionStabComponent
   ],
   imports: [
     BrowserModule,
