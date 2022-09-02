@@ -14,13 +14,15 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatListModule} from '@angular/material/list';
 import { BasicPeerConnectionStabComponent } from './RTCPeerConnection/basic-peer-connection-stab/basic-peer-connection-stab.component';
+import { GetUserMediaCanvasComponent } from './AccessMediaDevices/get-user-media-canvas/get-user-media-canvas.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     GetUserMediaBasicComponent,
-    BasicPeerConnectionStabComponent
+    BasicPeerConnectionStabComponent,
+    GetUserMediaCanvasComponent
   ],
   imports: [
     BrowserModule,
