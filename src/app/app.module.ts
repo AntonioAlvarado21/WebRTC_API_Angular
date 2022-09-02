@@ -13,8 +13,12 @@ import {MatCardModule} from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatListModule} from '@angular/material/list';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatSelectModule} from '@angular/material/select'; 
 import { BasicPeerConnectionStabComponent } from './RTCPeerConnection/basic-peer-connection-stab/basic-peer-connection-stab.component';
 import { GetUserMediaCanvasComponent } from './AccessMediaDevices/get-user-media-canvas/get-user-media-canvas.component';
+import { GetUserCanvasFiltersComponent } from './AccessMediaDevices/get-user-canvas-filters/get-user-canvas-filters.component';
+
 
 @NgModule({
   declarations: [
@@ -22,13 +26,15 @@ import { GetUserMediaCanvasComponent } from './AccessMediaDevices/get-user-media
     HeaderComponent,
     GetUserMediaBasicComponent,
     BasicPeerConnectionStabComponent,
-    GetUserMediaCanvasComponent
+    GetUserMediaCanvasComponent,
+    GetUserCanvasFiltersComponent
   ],
   imports: [
     BrowserModule,
     FormsModule, ReactiveFormsModule,
     BrowserAnimationsModule, MatFormFieldModule, MatInputModule,
     MatButtonModule, MatCardModule, MatIconModule, MatToolbarModule, MatListModule,
+    MatSidenavModule, MatSelectModule,
     AppRoutingModule
   ],
   providers: [],
